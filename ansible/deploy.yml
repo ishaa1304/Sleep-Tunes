@@ -1,0 +1,11 @@
+---
+- name: Deploy Flask and Next.js
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Set up Flask backend
+      import_playbook: flask-setup.yml
+
+    - name: Set up Next.js frontend
+      import_playbook: nextjs-setup.yml

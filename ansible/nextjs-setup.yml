@@ -1,0 +1,38 @@
+---
+- name: Set up Next.js Frontend
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Install Node.js
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Install npm
+      apt:
+        name: npm
+        state: present
+
+    - name: Clone Next.js repo
+      git:
+        repo: "git@github.com:your-repo/nextjs-app.git"
+        dest: /home/your_user/nextjs-app
+
+    - name: Install Next.js dependencies
+      npm:
+        path: /home/your_user/nextjs-app
+        state: present
+
+    - name: Build Next.js app
+      npm:
+        path: /home/your_user/nextjs-app
+        state: build
+
+    - name: Start Next.js app
+      systemd:
+        name: nextjs-app
+        state: started
+        enabled: yes
+        exec_start: npm start
+        working_directory: /home/your_user/nextjs-app
