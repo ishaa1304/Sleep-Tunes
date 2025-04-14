@@ -16,17 +16,17 @@
 
     - name: Clone Next.js repo
       git:
-        repo: "git@github.com:your-repo/nextjs-app.git"
-        dest: /home/your_user/nextjs-app
+        repo: "git@github.com:your-repo/app.git"
+        dest: /home/your_user/app
 
     - name: Install Next.js dependencies
       npm:
-        path: /home/your_user/nextjs-app
+        path: /home/your_user/app
         state: present
 
     - name: Build Next.js app
       npm:
-        path: /home/your_user/nextjs-app
+        path: /home/your_user/app
         state: build
 
     - name: Start Next.js app
@@ -35,4 +35,4 @@
         state: started
         enabled: yes
         exec_start: npm start
-        working_directory: /home/your_user/nextjs-app
+        working_directory: /home/your_user/app
