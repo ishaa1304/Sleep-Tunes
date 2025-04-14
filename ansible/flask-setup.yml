@@ -18,15 +18,15 @@
     - name: Clone Flask repo
       git:
         repo: "git@github.com:your-repo/backend.git"
-        dest: /home/your_user/flask-backend
+        dest: /home/your_user/backend
 
     - name: Install Flask dependencies
       pip:
-        requirements: /home/your_user/flask-backend/requirements.txt
+        requirements: /home/your_user/backend/requirements.txt
 
     - name: Start Flask app with gunicorn
       systemd:
-        name: flask-backend
+        name: backend
         state: started
         enabled: yes
         exec_start: /usr/local/bin/gunicorn -b 0.0.0.0:5000 app:app
